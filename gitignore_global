@@ -1,0 +1,16 @@
+*~
+*.orig
+*.rej
+*.swp
+.#*
+*.o
+.DS_Store
+.svn
+test.txt
+compass_app_log.txt
+*/thumbs
+Package Control.last-run
+SFTP.sublime-settings
+MAMP-PRO-Logo.gif
+kulturkreis copy.pp
+sessions

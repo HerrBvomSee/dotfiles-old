@@ -1,0 +1,239 @@
+﻿filetype off            " required!
+set modelines=0         " disable modelines support
+syntax on
+
+" Windows Compatible {
+    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+    " across (heterogeneous) systems easier.
+    if has('win32') || has('win64')
+      set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    endif
+" }
+
+" Setting up Vundle - the vim plugin bundler
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    if has('win32') || has('win64')
+        echo "Win32"
+        silent cd ~
+        silent !mkdir .vim\bundle
+        silent !git clone https://github.com/gmarik/vundle .vim/bundle/vundle
+    else
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    endif
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" { BUNDLES
+    " let Vundle manage Vundle
+    " required!
+    Bundle 'gmarik/vundle'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'vim-scripts/Auto-Pairs'
+    Bundle 'ervandew/supertab'
+    Bundle 'vim-scripts/taglist.vim'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'vim-scripts/bufexplorer.zip'
+    Bundle 'vim-scripts/TaskList.vim'
+    Bundle 'vim-scripts/bufkill.vim'
+    Bundle 'Raimondi/delimitMate'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'terryma/vim-multiple-cursors'
+    Bundle 'vim-scripts/open-terminal-filemanager'
+    Bundle 'xolox/vim-session'
+
+    " { COLOR SCHEMES
+        Bundle 'vim-scripts/mayansmoke'
+        Bundle 'nanotech/jellybeans.vim'
+        Bundle 'altercation/vim-colors-solarized'
+        Bundle 'tomasr/molokai'
+    " }
+
+    " { WEB DEV STUFF
+        Bundle 'Rykka/colorv.vim'
+        Bundle 'mattn/webapi-vim'
+    " }
+    " { LANGUAGE SUPPORT
+        " { CSS/SCSS
+            Bundle 'cakebaker/scss-syntax.vim'
+        " }
+
+        " { Python
+            Bundle 'nvie/vim-flake8'
+            Bundle 'rkulla/pydiction'
+            Bundle 'sontek/rope-vim'
+        " }
+
+    " }
+" }
+
+filetype plugin indent on     " file type detection
+
+let macvim_skip_colorscheme=1
+
+" { LOOK and FEEL
+    set background=light
+    colorscheme mayansmoke
+    "colorscheme jellybeans
+    "colorscheme solarized
+
+    set showmode
+    set relativenumber
+    set numberwidth=5
+    set ruler
+    set colorcolumn=80
+    " {
+        autocmd WinLeave * set nocursorline
+        autocmd WinEnter * set cursorline
+    " }
+    set guioptions-=T   " disable toolbar
+    set guifont=Source\ Code\ Pro\ For\ Powerline:h12
+    if has("gui_win32")
+        set guifont=Inconsolata\ For\ Powerline:h10
+        "set guifont=Source\ Code\ Pro\ For\ Powerline:h10
+    endif
+" }
+
+set list
+if has('win32') || has('win64')
+    set backspace=indent,eol,start
+else
+    set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+endif
+
+" { FORMATTING
+    set autoindent
+    set expandtab
+    set nowrap
+    set shiftwidth=4
+    set smartindent
+    set smarttab
+    set softtabstop=4
+    set tabstop=4
+" }
+
+" { CODE FOLDING
+    set foldlevel=1
+    set foldmethod=indent
+    set foldnestmax=10
+    set nofoldenable
+" }
+
+" { MISC SETTINGS
+    set autoread  " reload outside vim changes files
+    set encoding=utf-8
+    set hlsearch  " highlight search results
+" }
+
+" { KEY MAPPINGS
+    let mapleader=","  " set leader to a more common key
+
+    " { WINDOW SPLITTING
+        map <c-down> <c-w>j
+        map <c-up> <c-w>k
+        map <c-right> <c-w>l
+        map <c-left> <c-w>h
+        map <c-j> <c-w>j
+        map <c-k> <c-w>k
+        map <c-l> <c-w>l
+        map <c-h> <c-w>h
+    " }
+
+    " Toggle hlsearch with <leader>hs
+    nmap <leader>hs :set hlsearch! hlsearch?<CR>
+
+
+    " }
+" }
+
+" { STATUS BAR
+  set laststatus=2  " always show the status bar
+" }
+
+" automatically reload vimrc when it's saved
+" au BufWritePost .vimrc so ~/.vimrc
+
+" absolute line numbers in insert mode, relative otherwise for easy movement
+au InsertEnter * :set nu
+au InsertLeave * :set rnu
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" { Quick editing
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+    nnoremap <leader>eb :vsplit $HOME/.bash_profile<cr>
+    nnoremap <leader>evc :vsplit $HOME/.vim/vim_cheatsheet.txt<cr>
+" }
+
+if has('mac')
+    if isdirectory($HOME . '/.vim/swap') == 0
+      :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+    endif
+    set directory=~/.vim/swap// " default swap to home dir
+
+    if isdirectory($HOME . '/.vim/backup') == 0
+      :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+    endif
+    set backupdir=~/.vim/backup//
+endif
+
+" { LANGUAGE SPECIFIC SETTINGS
+    " { SCSS & CSS
+        au BufRead,BufNewFile *.scss set filetype=scss
+    " }
+    " { Python
+        let python_highlight_all=1
+        autocmd BufRead,BufNewFile *.py let python_highlight_all=1
+        autocmd BufWritePre *.py :%s/\s\+$//e
+        au FileType python set omnifunc=pythoncomplete#Complete
+        autocmd BufWritePost *.py call Flake8()
+    " }
+" }
+
+" { PLUGIN SETTINGS
+    " { PowerLine
+""        python from powerline.bindings.vim import source_plugin; source_plugin()
+""        let g:Powerline_symbols = 'fancy'
+    " }
+    " { NERDTree SETTINGS
+        map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
+        map <leader>n :NERDTreeToggle<CR>
+        let NERDTreeShowHidden=1
+    " }
+    " { SuperTab
+        let g:SuperTabDefaultCompletionType = "context"
+    " }
+    " { PyDiction
+        let g:pydiction_location = '~/bundle/pydiction/complete-dict'
+    " }
+    " { TagList
+        nnoremap <silent> <F8> :TlistToggle<CR>
+        let Tlist_Use_Right_Window = 1
+    " }
+    " { TaskList
+        map <leader>td <Plug>TaskList
+    " }
+    " { vim-session
+        let g:session_autosave = 'no'
+    " }
+    " { Rope
+        let ropevim_vim_completion = 1
+        let ropevim_extended_complete = 1
+        let g:ropevim_autoimport_modules = ["os.*","traceback","django.*", "xml.etree"]
+        imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+    " }
+    " {
+        let g:multi_cursor_use_default_mapping=0
+        " Default mapping
+        let g:multi_cursor_next_key='<C-n>'
+        let g:multi_cursor_prev_key='<C-p>'
+        let g:multi_cursor_skip_key='<C-x>'
+        let g:multi_cursor_quit_key='<Esc>'
+    " }
+" }
