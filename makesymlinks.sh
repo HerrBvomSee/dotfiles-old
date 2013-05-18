@@ -4,7 +4,7 @@
 dir=~/dotfiles
 backup_dir=~/dotfiles_backup
 
-files="bashrc vimrc bash_profile hgignore_global gitignore_global"
+files="bashrc vimrc bash_profile hgignore_global gitignore_global zshrc"
 
 echo "Creating $backup_dir for exisiting dotfiles in ~"
 mkdir -p $backup_dir
