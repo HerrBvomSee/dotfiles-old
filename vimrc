@@ -4,7 +4,7 @@ syntax on
 
 " Windows Compatible {
     " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-    " across (heterogeneous) systems easier.
+    " across (heterogeneous) systems easier. 
     if has('win32') || has('win64')
       set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
     endif
@@ -45,6 +45,7 @@ call vundle#rc()
     Bundle 'majutsushi/tagbar'
     Bundle 'terryma/vim-multiple-cursors'
     Bundle 'vim-scripts/open-terminal-filemanager'
+    Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-session'
 
     " { COLOR SCHEMES
@@ -52,9 +53,10 @@ call vundle#rc()
         Bundle 'nanotech/jellybeans.vim'
         Bundle 'altercation/vim-colors-solarized'
         Bundle 'tomasr/molokai'
+        Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes/' }
     " }
 
-    " { WEB DEV STUFF
+    " { WEB DEV STUFF 
         Bundle 'Rykka/colorv.vim'
         Bundle 'mattn/webapi-vim'
     " }
@@ -62,13 +64,14 @@ call vundle#rc()
         " { CSS/SCSS
             Bundle 'cakebaker/scss-syntax.vim'
         " }
-
+        
         " { Python
             Bundle 'nvie/vim-flake8'
             Bundle 'rkulla/pydiction'
             Bundle 'sontek/rope-vim'
+            Bundle 'davidhalter/jedi-vim'
         " }
-
+        
     " }
 " }
 
@@ -79,7 +82,7 @@ let macvim_skip_colorscheme=1
 " { LOOK and FEEL
     set background=light
     colorscheme mayansmoke
-    "colorscheme jellybeans
+    "colorscheme Grunge
     "colorscheme solarized
 
     set showmode
@@ -94,7 +97,7 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        set guifont=Inconsolata\ For\ Powerline:h10
+        set guifont=Inconsolata\ For\ Powerline:h11
         "set guifont=Source\ Code\ Pro\ For\ Powerline:h10
     endif
 " }
@@ -129,7 +132,7 @@ endif
     set encoding=utf-8
     set hlsearch  " highlight search results
 " }
-
+    
 " { KEY MAPPINGS
     let mapleader=","  " set leader to a more common key
 
@@ -147,7 +150,7 @@ endif
     " Toggle hlsearch with <leader>hs
     nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
-
+    
     " }
 " }
 
@@ -161,7 +164,7 @@ endif
 " absolute line numbers in insert mode, relative otherwise for easy movement
 au InsertEnter * :set nu
 au InsertLeave * :set rnu
-
+   
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
@@ -184,7 +187,7 @@ if has('mac')
 endif
 
 " { LANGUAGE SPECIFIC SETTINGS
-    " { SCSS & CSS
+    " { SCSS & CSS 
         au BufRead,BufNewFile *.scss set filetype=scss
     " }
     " { Python
@@ -198,8 +201,8 @@ endif
 
 " { PLUGIN SETTINGS
     " { PowerLine
-""        python from powerline.bindings.vim import source_plugin; source_plugin()
-""        let g:Powerline_symbols = 'fancy'
+        python from powerline.bindings.vim import source_plugin; source_plugin()
+"        let g:Powerline_symbols = 'compatible'
     " }
     " { NERDTree SETTINGS
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
@@ -220,7 +223,7 @@ endif
         map <leader>td <Plug>TaskList
     " }
     " { vim-session
-        let g:session_autosave = 'no'
+        let g:session_autosave = 'no'  
     " }
     " { Rope
         let ropevim_vim_completion = 1

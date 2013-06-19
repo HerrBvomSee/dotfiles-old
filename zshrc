@@ -44,6 +44,7 @@ plugins=(git brew osx python mercurial)
 
 source $ZSH/oh-my-zsh.sh
 
+
 # Customize to your needs...
 
 # set default architecture on 10.8 to 64bit
