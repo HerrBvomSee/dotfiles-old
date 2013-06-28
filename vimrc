@@ -47,14 +47,22 @@ call vundle#rc()
     Bundle 'vim-scripts/open-terminal-filemanager'
     Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-session'
+    Bundle 'xolox/vim-shell'
+    Bundle 'kien/ctrlp.vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
         Bundle 'nanotech/jellybeans.vim'
         Bundle 'altercation/vim-colors-solarized'
         Bundle 'tomasr/molokai'
-        Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes/' }
-    " }
+        Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
+        Bundle 'vim-scripts/peaksea'
+        Bundle 'wesgibbs/vim-irblack'
+        Bundle 'therubymug/vim-pyte'
+        Bundle 'Pychimp/vim-luna'
+        Bundle 'wombat256.vim'
+        Bundle 'xoria256.vim'
+        " }
 
     " { WEB DEV STUFF 
         Bundle 'Rykka/colorv.vim'
@@ -71,7 +79,6 @@ call vundle#rc()
             Bundle 'sontek/rope-vim'
             Bundle 'davidhalter/jedi-vim'
         " }
-        
     " }
 " }
 
@@ -80,9 +87,9 @@ filetype plugin indent on     " file type detection
 let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
-    set background=light
-    colorscheme mayansmoke
-    "colorscheme Grunge
+    set background=dark
+    " colorscheme mayansmoke
+    colorscheme wombat256mod
     "colorscheme solarized
 
     set showmode
@@ -97,8 +104,8 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        set guifont=Inconsolata\ For\ Powerline:h11
-        "set guifont=Source\ Code\ Pro\ For\ Powerline:h10
+        " set guifont=Inconsolata\ For\ Powerline:h11
+        set guifont=Source\ Code\ Pro\ For\ Powerline:h10
     endif
 " }
 
@@ -205,8 +212,9 @@ endif
 "        let g:Powerline_symbols = 'compatible'
     " }
     " { NERDTree SETTINGS
+        let NERDTreeIgnore=['\.py[oc]', '\.swp']
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
-        map <leader>n :NERDTreeToggle<CR>
+        map <leader>N :NERDTreeToggle<CR>
         let NERDTreeShowHidden=1
     " }
     " { SuperTab
@@ -223,7 +231,11 @@ endif
         map <leader>td <Plug>TaskList
     " }
     " { vim-session
-        let g:session_autosave = 'no'  
+        let g:session_autosave='no'  
+    " }
+    " { vim-shell
+        let g:shell_fullscreen_always_on_top=0
+    "
     " }
     " { Rope
         let ropevim_vim_completion = 1
