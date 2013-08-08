@@ -49,17 +49,12 @@ call vundle#rc()
     Bundle 'xolox/vim-session'
     Bundle 'xolox/vim-shell'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'kien/rainbow_parentheses.vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
-        Bundle 'nanotech/jellybeans.vim'
-        Bundle 'altercation/vim-colors-solarized'
-        Bundle 'tomasr/molokai'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
         Bundle 'vim-scripts/peaksea'
-        Bundle 'wesgibbs/vim-irblack'
-        Bundle 'therubymug/vim-pyte'
-        Bundle 'Pychimp/vim-luna'
         Bundle 'wombat256.vim'
         Bundle 'xoria256.vim'
         " }
@@ -88,9 +83,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    " colorscheme mayansmoke
-    colorscheme wombat256mod
-    "colorscheme solarized
+    colorscheme xoria256
 
     set showmode
     set relativenumber
@@ -212,10 +205,11 @@ endif
 "        let g:Powerline_symbols = 'compatible'
     " }
     " { NERDTree SETTINGS
-        let NERDTreeIgnore=['\.py[oc]', '\.swp']
+        let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
         map <leader>N :NERDTreeToggle<CR>
         let NERDTreeShowHidden=1
+        let NERDTreeQuitOnOpen=1
     " }
     " { SuperTab
         let g:SuperTabDefaultCompletionType = "context"
@@ -250,5 +244,12 @@ endif
         let g:multi_cursor_prev_key='<C-p>'
         let g:multi_cursor_skip_key='<C-x>'
         let g:multi_cursor_quit_key='<Esc>'
+    " }
+    " { Rainbow paranthesis
+    " }
+    " { JEDI
+        let g:jedi#popup_on_dot=0
+        let g:jedi#use_tabs_not_buffers=0
+        let g:jedi#show_function_definition=0
     " }
 " }
