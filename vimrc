@@ -50,6 +50,7 @@ call vundle#rc()
     Bundle 'xolox/vim-shell'
     Bundle 'kien/ctrlp.vim'
     Bundle 'kien/rainbow_parentheses.vim'
+    Bundle 'vimwiki/vimwiki'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
