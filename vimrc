@@ -32,6 +32,7 @@ call vundle#rc()
     " let Vundle manage Vundle
     " required!
     Bundle 'gmarik/vundle'
+    Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
     Bundle 'vim-scripts/Auto-Pairs'
     Bundle 'ervandew/supertab'
@@ -51,6 +52,11 @@ call vundle#rc()
     Bundle 'kien/ctrlp.vim'
     Bundle 'kien/rainbow_parentheses.vim'
     Bundle 'vimwiki/vimwiki'
+    
+    Bundle "MarcWeber/vim-addon-mw-utils"
+    Bundle "tomtom/tlib_vim"
+    Bundle "garbas/vim-snipmate"
+    Bundle "honza/vim-snippets"
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
@@ -202,8 +208,11 @@ endif
 
 " { PLUGIN SETTINGS
     " { PowerLine
-        python from powerline.bindings.vim import source_plugin; source_plugin()
+        " python from powerline.bindings.vim import source_plugin; source_plugin()
 "        let g:Powerline_symbols = 'compatible'
+    " }
+    " { Airline
+        let g:airline_powerline_fonts=1
     " }
     " { NERDTree SETTINGS
         let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
