@@ -38,6 +38,7 @@ call vundle#rc()
     Bundle 'ervandew/supertab'
     Bundle 'vim-scripts/taglist.vim'
     Bundle 'scrooloose/nerdcommenter'
+    "Bundle 'scrooloose/syntastic'
     Bundle 'tpope/vim-fugitive'
     Bundle 'vim-scripts/bufexplorer.zip'
     Bundle 'vim-scripts/TaskList.vim'
@@ -261,5 +262,10 @@ endif
         let g:jedi#popup_on_dot=0
         let g:jedi#use_tabs_not_buffers=0
         let g:jedi#show_function_definition=0
+    " }
+    " { SYNTASTIC
+       let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
+       let g:syntastic_enable_signs=1
+       let g:syntastic_auto_jump=1
     " }
 " }
