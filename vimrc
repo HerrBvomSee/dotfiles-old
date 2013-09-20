@@ -34,42 +34,45 @@ call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
-    Bundle 'vim-scripts/Auto-Pairs'
-    Bundle 'ervandew/supertab'
-    Bundle 'vim-scripts/taglist.vim'
-    Bundle 'scrooloose/nerdcommenter'
-    "Bundle 'scrooloose/syntastic'
-    Bundle 'tpope/vim-fugitive'
     Bundle 'vim-scripts/bufexplorer.zip'
-    Bundle 'vim-scripts/TaskList.vim'
-    Bundle 'vim-scripts/bufkill.vim'
-    Bundle 'Raimondi/delimitMate'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'terryma/vim-multiple-cursors'
     Bundle 'vim-scripts/open-terminal-filemanager'
     Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-session'
     Bundle 'xolox/vim-shell'
-    Bundle 'kien/ctrlp.vim'
     Bundle 'kien/rainbow_parentheses.vim'
-    Bundle 'vimwiki/vimwiki'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tomtom/tcomment_vim'
+
+    " Bundle 'vim-scripts/Auto-Pairs'
+    " Bundle 'ervandew/supertab'
+    " Bundle 'vim-scripts/taglist.vim'
+    " Bundle 'scrooloose/nerdcommenter'
+    " Bundle 'scrooloose/syntastic'
+    " Bundle 'tpope/vim-fugitive'
+    " Bundle 'vim-scripts/TaskList.vim'
+    " Bundle 'vim-scripts/bufkill.vim'
+    " Bundle 'Raimondi/delimitMate'
+    " Bundle 'majutsushi/tagbar'
+    " Bundle 'terryma/vim-multiple-cursors'
+    " Bundle 'kien/ctrlp.vim'
+    " Bundle 'vimwiki/vimwiki'
     
-    Bundle "MarcWeber/vim-addon-mw-utils"
-    Bundle "tomtom/tlib_vim"
-    Bundle "garbas/vim-snipmate"
-    Bundle "honza/vim-snippets"
+    " Bundle "MarcWeber/vim-addon-mw-utils"
+    " Bundle "tomtom/tlib_vim"
+    " Bundle "garbas/vim-snipmate"
+    " Bundle "honza/vim-snippets"
 
     " { COLOR SCHEMES
-        Bundle 'vim-scripts/mayansmoke'
+        " Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
-        Bundle 'vim-scripts/peaksea'
+        " Bundle 'vim-scripts/peaksea'
         Bundle 'wombat256.vim'
         Bundle 'xoria256.vim'
         " }
 
     " { WEB DEV STUFF 
-        Bundle 'Rykka/colorv.vim'
-        Bundle 'mattn/webapi-vim'
+        " Bundle 'Rykka/colorv.vim'
+        " Bundle 'mattn/webapi-vim'
     " }
     " { LANGUAGE SUPPORT
         " { CSS/SCSS
@@ -105,7 +108,6 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        " set guifont=Inconsolata\ For\ Powerline:h11
         set guifont=Source\ Code\ Pro\ For\ Powerline:h10
     endif
 " }
@@ -208,17 +210,14 @@ endif
 " }
 
 " { PLUGIN SETTINGS
-    " { PowerLine
-        " python from powerline.bindings.vim import source_plugin; source_plugin()
-"        let g:Powerline_symbols = 'compatible'
-    " }
     " { Airline
         let g:airline_powerline_fonts=1
     " }
+    
     " { NERDTree SETTINGS
         let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
-        map <leader>N :NERDTreeToggle<CR>
+        map <silent> <C-e> :NERDTreeToggle<CR>
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
     " }
@@ -257,11 +256,26 @@ endif
         let g:multi_cursor_quit_key='<Esc>'
     " }
     " { Rainbow paranthesis
+        function! Config_Rainbow()
+            call rainbow_parentheses#load(0)
+            call rainbow_parentheses#load(1)
+            call rainbow_parentheses#load(2)
+        endfunction
+
+        function! Load_Rainbow()
+            call rainbow_parentheses#activate()
+        endfunction
+
+        augroup TastetheRainbow
+            autocmd!
+            autocmd Syntax * call Config_Rainbow()
+            autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Load_Rainbow()
+        augroup END
     " }
     " { JEDI
         let g:jedi#popup_on_dot=0
         let g:jedi#use_tabs_not_buffers=0
-        let g:jedi#show_function_definition=0
+        let g:jedi#show_call_signatures=0
     " }
     " { SYNTASTIC
        let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
