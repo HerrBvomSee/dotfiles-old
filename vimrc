@@ -66,8 +66,8 @@ call vundle#rc()
         " Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
         " Bundle 'vim-scripts/peaksea'
-        Bundle 'wombat256.vim'
-        Bundle 'xoria256.vim'
+        " Bundle 'wombat256.vim'
+        " Bundle 'xoria256.vim'
         " }
 
     " { WEB DEV STUFF 
@@ -94,7 +94,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    colorscheme xoria256
+    colorscheme Grunge
 
     set showmode
     set relativenumber
@@ -110,6 +110,14 @@ let macvim_skip_colorscheme=1
     if has("gui_win32")
         set guifont=Source\ Code\ Pro\ For\ Powerline:h10
     endif
+
+    " absolute line numbers in insert mode, relative otherwise for easy movement
+    au InsertEnter * :set nu
+    au InsertLeave * :set rnu
+
+    " Resize splits when the window is resized
+    au VimResized * :wincmd =
+
 " }
 
 set list
@@ -130,6 +138,11 @@ endif
     set tabstop=4
 " }
 
+" { CLIPBOARD HANDLING
+    set pastetoggle=<F2>
+    set clipboard=unnamed
+" }
+
 " { CODE FOLDING
     set foldlevel=1
     set foldmethod=indent
@@ -141,6 +154,10 @@ endif
     set autoread  " reload outside vim changes files
     set encoding=utf-8
     set hlsearch  " highlight search results
+    " case insensitive search
+    set incsearch
+    set ignorecase
+    set smartcase
 " }
     
 " { KEY MAPPINGS
@@ -160,7 +177,11 @@ endif
     " Toggle hlsearch with <leader>hs
     nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
-    
+    " block movement for indention
+    vnoremap < <gv
+    vnoremap > >gv
+   
+    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
     " }
 " }
 
@@ -169,17 +190,11 @@ endif
 " }
 
 " automatically reload vimrc when it's saved
-" au BufWritePost .vimrc so ~/.vimrc
+autocmd BufWritePost .vimrc source ~/.vimrc
 
-" absolute line numbers in insert mode, relative otherwise for easy movement
-au InsertEnter * :set nu
-au InsertLeave * :set rnu
    
-" Resize splits when the window is resized
-au VimResized * :wincmd =
-
 " { Quick editing
-    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+    nnoremap <leader>ev :e $MYVIMRC<cr>
     nnoremap <leader>eb :vsplit $HOME/.bash_profile<cr>
     nnoremap <leader>evc :vsplit $HOME/.vim/vim_cheatsheet.txt<cr>
 " }
@@ -206,6 +221,9 @@ endif
         autocmd BufWritePre *.py :%s/\s\+$//e
         au FileType python set omnifunc=pythoncomplete#Complete
         autocmd BufWritePost *.py call Flake8()
+    " }
+    " { Markdown
+        au BufRead,BufNewFile *.md set filetype=markdown
     " }
 " }
 
@@ -239,13 +257,12 @@ endif
     " }
     " { vim-shell
         let g:shell_fullscreen_always_on_top=0
-    "
     " }
     " { Rope
-        let ropevim_vim_completion = 1
-        let ropevim_extended_complete = 1
-        let g:ropevim_autoimport_modules = ["os.*","traceback","django.*", "xml.etree"]
-        imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+        " let ropevim_vim_completion = 1
+        " let ropevim_extended_complete = 1
+        " let g:ropevim_autoimport_modules = ["os.*","traceback","django.*", "xml.etree"]
+        " imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
     " }
     " {
         let g:multi_cursor_use_default_mapping=0
@@ -273,9 +290,11 @@ endif
         augroup END
     " }
     " { JEDI
+        let g:jedi#related_names_command = "<leader>z"
         let g:jedi#popup_on_dot=0
+        let g:jedi#popup_select_first=0
         let g:jedi#use_tabs_not_buffers=0
-        let g:jedi#show_call_signatures=0
+    "    let g:jedi#show_call_signatures=0
     " }
     " { SYNTASTIC
        let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
