@@ -42,6 +42,7 @@ call vundle#rc()
     Bundle 'kien/rainbow_parentheses.vim'
     Bundle 'tpope/vim-surround'
     Bundle 'tomtom/tcomment_vim'
+    Bundle 'kien/ctrlp.vim'
 
     " Bundle 'vim-scripts/Auto-Pairs'
     " Bundle 'ervandew/supertab'
@@ -54,7 +55,6 @@ call vundle#rc()
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'majutsushi/tagbar'
     " Bundle 'terryma/vim-multiple-cursors'
-    " Bundle 'kien/ctrlp.vim'
     " Bundle 'vimwiki/vimwiki'
     
     " Bundle "MarcWeber/vim-addon-mw-utils"
@@ -94,7 +94,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    colorscheme Grunge
+    colorscheme molokai
 
     set showmode
     set relativenumber
@@ -290,7 +290,7 @@ endif
         augroup END
     " }
     " { JEDI
-        let g:jedi#related_names_command = "<leader>z"
+        let g:jedi#usages_command = "<leader>z"
         let g:jedi#popup_on_dot=0
         let g:jedi#popup_select_first=0
         let g:jedi#use_tabs_not_buffers=0
@@ -300,5 +300,8 @@ endif
        let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
        let g:syntastic_enable_signs=1
        let g:syntastic_auto_jump=1
+    " }
+    " { TCOMMENT
+       map <leader>c <c-_><c-_> 
     " }
 " }
