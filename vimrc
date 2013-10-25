@@ -43,12 +43,12 @@ call vundle#rc()
     Bundle 'tpope/vim-surround'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'scrooloose/syntastic'
 
     " Bundle 'vim-scripts/Auto-Pairs'
     " Bundle 'ervandew/supertab'
     " Bundle 'vim-scripts/taglist.vim'
     " Bundle 'scrooloose/nerdcommenter'
-    " Bundle 'scrooloose/syntastic'
     " Bundle 'tpope/vim-fugitive'
     " Bundle 'vim-scripts/TaskList.vim'
     " Bundle 'vim-scripts/bufkill.vim'
@@ -63,12 +63,10 @@ call vundle#rc()
     " Bundle "honza/vim-snippets"
 
     " { COLOR SCHEMES
-        " Bundle 'vim-scripts/mayansmoke'
+        Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
-        " Bundle 'vim-scripts/peaksea'
-        " Bundle 'wombat256.vim'
-        " Bundle 'xoria256.vim'
-        " }
+        Bundle 'tomasr/molokai'
+    " }
 
     " { WEB DEV STUFF 
         " Bundle 'Rykka/colorv.vim'
@@ -80,9 +78,9 @@ call vundle#rc()
         " }
         
         " { Python
-            Bundle 'nvie/vim-flake8'
-            Bundle 'rkulla/pydiction'
-            Bundle 'sontek/rope-vim'
+            " Bundle 'nvie/vim-flake8'
+            " Bundle 'rkulla/pydiction'
+            " Bundle 'sontek/rope-vim'
             Bundle 'davidhalter/jedi-vim'
         " }
     " }
@@ -108,7 +106,7 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        set guifont=Source\ Code\ Pro\ For\ Powerline:h10
+        set guifont=Source\ Code\ Pro\ For\ Powerline:h9
     endif
 
     " absolute line numbers in insert mode, relative otherwise for easy movement
@@ -220,7 +218,7 @@ endif
         autocmd BufRead,BufNewFile *.py let python_highlight_all=1
         autocmd BufWritePre *.py :%s/\s\+$//e
         au FileType python set omnifunc=pythoncomplete#Complete
-        autocmd BufWritePost *.py call Flake8()
+        " autocmd BufWritePost *.py call Flake8()
     " }
     " { Markdown
         au BufRead,BufNewFile *.md set filetype=markdown
@@ -299,7 +297,9 @@ endif
     " { SYNTASTIC
        let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
        let g:syntastic_enable_signs=1
-       let g:syntastic_auto_jump=1
+       let g:syntastic_auto_jump=0
+       let g:syntastic_always_populate_loc_list=1
+       let g:syntastic_auto_loc_list=1
     " }
     " { TCOMMENT
        map <leader>c <c-_><c-_> 
