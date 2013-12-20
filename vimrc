@@ -44,6 +44,10 @@ call vundle#rc()
     Bundle 'tomtom/tcomment_vim'
     Bundle 'kien/ctrlp.vim'
     Bundle 'scrooloose/syntastic'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'plasticboy/vim-markdown'
+    Bundle 'sjl/gundo.vim'
 
     " Bundle 'vim-scripts/Auto-Pairs'
     " Bundle 'ervandew/supertab'
