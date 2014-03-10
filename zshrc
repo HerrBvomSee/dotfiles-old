@@ -51,11 +51,13 @@ source $ZSH/oh-my-zsh.sh
 export ARCHFLAGS="-arch x86_64"
 
 # homebrew paths
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/usr/local/share/python:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/lib/python2.7/site-packages:$PATH
 
 # rbenv settings
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # Pythons virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=~/.virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
