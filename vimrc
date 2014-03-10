@@ -55,6 +55,12 @@ call vundle#rc()
         Bundle 'tomasr/molokai'
     " }
 
+    " { WEB DEV STUFF 
+        " Bundle 'Rykka/colorv.vim'
+        " Bundle 'mattn/webapi-vim'
+        Bundle "othree/html5.vim"
+        Bundle "othree/html5-syntax.vim"
+    " }
     " { LANGUAGE SUPPORT
         " { CSS/SCSS
             Bundle 'cakebaker/scss-syntax.vim'
@@ -165,6 +171,7 @@ endif
     vnoremap < <gv
     vnoremap > >gv
    
+    " Python specific
     map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
     " }
 " }
