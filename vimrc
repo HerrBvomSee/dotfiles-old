@@ -49,45 +49,26 @@ call vundle#rc()
     Bundle 'plasticboy/vim-markdown'
     Bundle 'sjl/gundo.vim'
 
-    " Bundle 'vim-scripts/Auto-Pairs'
-    " Bundle 'ervandew/supertab'
-    " Bundle 'vim-scripts/taglist.vim'
-    " Bundle 'scrooloose/nerdcommenter'
-    " Bundle 'tpope/vim-fugitive'
-    " Bundle 'vim-scripts/TaskList.vim'
-    " Bundle 'vim-scripts/bufkill.vim'
-    " Bundle 'Raimondi/delimitMate'
-    " Bundle 'majutsushi/tagbar'
-    " Bundle 'terryma/vim-multiple-cursors'
-    " Bundle 'vimwiki/vimwiki'
-    
-    " Bundle "MarcWeber/vim-addon-mw-utils"
-    " Bundle "tomtom/tlib_vim"
-    " Bundle "garbas/vim-snipmate"
-    " Bundle "honza/vim-snippets"
-
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
         Bundle 'tomasr/molokai'
     " }
 
-    " { WEB DEV STUFF 
-        " Bundle 'Rykka/colorv.vim'
-        " Bundle 'mattn/webapi-vim'
-    " }
     " { LANGUAGE SUPPORT
         " { CSS/SCSS
             Bundle 'cakebaker/scss-syntax.vim'
         " }
         
         " { Python
-            " Bundle 'nvie/vim-flake8'
-            " Bundle 'rkulla/pydiction'
-            " Bundle 'sontek/rope-vim'
             Bundle 'davidhalter/jedi-vim'
         " }
     " }
+    
+    " { === TESTBED ===
+    Bundle 'zhaocai/GoldenView.Vim'
+    " === }
+
 " }
 
 filetype plugin indent on     " file type detection
@@ -107,6 +88,7 @@ let macvim_skip_colorscheme=1
         autocmd WinLeave * set nocursorline
         autocmd WinEnter * set cursorline
     " }
+    set guioptions-=m   " disable menubar
     set guioptions-=T   " disable toolbar
     set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
