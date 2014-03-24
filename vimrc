@@ -37,15 +37,17 @@ call vundle#rc()
     Bundle 'vim-scripts/bufexplorer.zip'
     Bundle 'vim-scripts/open-terminal-filemanager'
     Bundle 'xolox/vim-misc'
-    Bundle 'xolox/vim-session'
+    "    Bundle 'xolox/vim-session'
     Bundle 'xolox/vim-shell'
     Bundle 'kien/rainbow_parentheses.vim'
-    Bundle 'tpope/vim-surround'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'kien/ctrlp.vim'
     Bundle 'scrooloose/syntastic'
+
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-repeat'
+    Bundle 'tpope/vim-obsession'
+    Bundle 'tpope/vim-surround'
     Bundle 'plasticboy/vim-markdown'
     Bundle 'sjl/gundo.vim'
 
@@ -53,14 +55,9 @@ call vundle#rc()
         Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
         Bundle 'tomasr/molokai'
+        Bundle 'Pychimp/vim-luna'
     " }
 
-    " { WEB DEV STUFF 
-        " Bundle 'Rykka/colorv.vim'
-        " Bundle 'mattn/webapi-vim'
-        Bundle "othree/html5.vim"
-        Bundle "othree/html5-syntax.vim"
-    " }
     " { LANGUAGE SUPPORT
         " { CSS/SCSS
             Bundle 'cakebaker/scss-syntax.vim'
@@ -72,7 +69,7 @@ call vundle#rc()
     " }
     
     " { === TESTBED ===
-    Bundle 'zhaocai/GoldenView.Vim'
+    " Bundle 'zhaocai/GoldenView.Vim'
     " === }
 
 " }
@@ -83,7 +80,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    colorscheme molokai
+    colorscheme luna
 
     set showmode
     set relativenumber
@@ -171,7 +168,6 @@ endif
     vnoremap < <gv
     vnoremap > >gv
    
-    " Python specific
     map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
     " }
 " }
@@ -211,7 +207,6 @@ endif
         autocmd BufRead,BufNewFile *.py let python_highlight_all=1
         autocmd BufWritePre *.py :%s/\s\+$//e
         au FileType python set omnifunc=pythoncomplete#Complete
-        " autocmd BufWritePost *.py call Flake8()
     " }
     " { Markdown
         au BufRead,BufNewFile *.md set filetype=markdown
@@ -221,6 +216,7 @@ endif
 " { PLUGIN SETTINGS
     " { Airline
         let g:airline_powerline_fonts=1
+        " let g:airline#extensions#tabline#enabled=1
     " }
     
     " { NERDTree SETTINGS
@@ -240,28 +236,11 @@ endif
         nnoremap <silent> <F8> :TlistToggle<CR>
         let Tlist_Use_Right_Window = 1
     " }
-    " { TaskList
-        map <leader>td <Plug>TaskList
-    " }
     " { vim-session
         let g:session_autosave='no'  
     " }
     " { vim-shell
         let g:shell_fullscreen_always_on_top=0
-    " }
-    " { Rope
-        " let ropevim_vim_completion = 1
-        " let ropevim_extended_complete = 1
-        " let g:ropevim_autoimport_modules = ["os.*","traceback","django.*", "xml.etree"]
-        " imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
-    " }
-    " {
-        let g:multi_cursor_use_default_mapping=0
-        " Default mapping
-        let g:multi_cursor_next_key='<C-n>'
-        let g:multi_cursor_prev_key='<C-p>'
-        let g:multi_cursor_skip_key='<C-x>'
-        let g:multi_cursor_quit_key='<Esc>'
     " }
     " { Rainbow paranthesis
         function! Config_Rainbow()
