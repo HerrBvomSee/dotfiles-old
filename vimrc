@@ -34,7 +34,8 @@ call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
-    Bundle 'vim-scripts/bufexplorer.zip'
+    "    Bundle 'vim-scripts/bufexplorer.zip'
+    Bundle 'jeetsukumaran/vim-buffergator'
     Bundle 'vim-scripts/open-terminal-filemanager'
     Bundle 'xolox/vim-misc'
     "    Bundle 'xolox/vim-session'
@@ -69,7 +70,6 @@ call vundle#rc()
     " }
     
     " { === TESTBED ===
-    " Bundle 'zhaocai/GoldenView.Vim'
     " === }
 
 " }
@@ -93,10 +93,14 @@ let macvim_skip_colorscheme=1
     " }
     set guioptions-=m   " disable menubar
     set guioptions-=T   " disable toolbar
-    set guifont=Source\ Code\ Pro\ For\ Powerline:h12
+    " set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        set guifont=Source\ Code\ Pro\ For\ Powerline:h9
+        " set guifont=Source\ Code\ Pro\ For\ Powerline:h9
+        " set guifont=Ubuntu\ Mono\ For\ Powerline:h10
+        " set guifont=Droid\ Sans\ Mono\ For\ Powerline:h8
+        set guifont=DejaVu\ Sans\ Mono\ For\ Powerline:h8
     endif
+
 
     " absolute line numbers in insert mode, relative otherwise for easy movement
     au InsertEnter * :set nu
@@ -216,7 +220,6 @@ endif
 " { PLUGIN SETTINGS
     " { Airline
         let g:airline_powerline_fonts=1
-        " let g:airline#extensions#tabline#enabled=1
     " }
     
     " { NERDTree SETTINGS
