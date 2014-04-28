@@ -2,15 +2,14 @@
 set modelines=0         " disable modelines support
 syntax on
 
-" Windows Compatible {
-    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-    " across (heterogeneous) systems easier. 
-    if has('win32') || has('win64')
-      set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-    endif
-" }
+" On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+" across (heterogeneous) systems easier. 
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
 
 " Setting up Vundle - the vim plugin bundler
+" to let it also install itself when missing (git is prereq)
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
@@ -34,16 +33,14 @@ call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
-    "    Bundle 'vim-scripts/bufexplorer.zip'
+    " Bundle 'tpope/vim-vinegar'
     Bundle 'jeetsukumaran/vim-buffergator'
     Bundle 'vim-scripts/open-terminal-filemanager'
-    Bundle 'xolox/vim-misc'
-    "    Bundle 'xolox/vim-session'
-    Bundle 'xolox/vim-shell'
-    Bundle 'kien/rainbow_parentheses.vim'
+    Bundle 'luochen1990/rainbow'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'kien/ctrlp.vim'
     Bundle 'scrooloose/syntastic'
+    Bundle 'sheerun/vim-polyglot'
 
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-repeat'
@@ -51,12 +48,14 @@ call vundle#rc()
     Bundle 'tpope/vim-surround'
     Bundle 'plasticboy/vim-markdown'
     Bundle 'sjl/gundo.vim'
+    Bundle 'zhaocai/GoldenView.Vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
         Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
         Bundle 'tomasr/molokai'
         Bundle 'Pychimp/vim-luna'
+        Bundle 'chriskempson/base16-vim'
     " }
 
     " { LANGUAGE SUPPORT
@@ -68,10 +67,6 @@ call vundle#rc()
             Bundle 'davidhalter/jedi-vim'
         " }
     " }
-    
-    " { === TESTBED ===
-    " === }
-
 " }
 
 filetype plugin indent on     " file type detection
@@ -80,7 +75,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    colorscheme luna
+    colorscheme base16-flat
 
     set showmode
     set relativenumber
@@ -220,8 +215,15 @@ endif
 " { PLUGIN SETTINGS
     " { Airline
         let g:airline_powerline_fonts=1
+        let g:airline_theme="base16"
     " }
-    
+    " { Goldenview
+        let g:goldenview__enable_default_mapping = 0
+
+        nmap <silent> <M-l> <Plug>GoldenViewSplit
+        nmap <silent> <M-n> <Plug>GoldenViewNext
+        nmap <silent> <M-p> <Plug>GoldenViewPrevious
+    " }
     " { NERDTree SETTINGS
         let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
@@ -239,28 +241,8 @@ endif
         nnoremap <silent> <F8> :TlistToggle<CR>
         let Tlist_Use_Right_Window = 1
     " }
-    " { vim-session
-        let g:session_autosave='no'  
-    " }
-    " { vim-shell
-        let g:shell_fullscreen_always_on_top=0
-    " }
     " { Rainbow paranthesis
-        function! Config_Rainbow()
-            call rainbow_parentheses#load(0)
-            call rainbow_parentheses#load(1)
-            call rainbow_parentheses#load(2)
-        endfunction
-
-        function! Load_Rainbow()
-            call rainbow_parentheses#activate()
-        endfunction
-
-        augroup TastetheRainbow
-            autocmd!
-            autocmd Syntax * call Config_Rainbow()
-            autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Load_Rainbow()
-        augroup END
+        let g:rainbow_active = 1
     " }
     " { JEDI
         let g:jedi#usages_command = "<leader>z"
