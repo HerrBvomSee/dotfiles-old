@@ -14,7 +14,6 @@ let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
     if has('win32') || has('win64')
-        echo "Win32"
         silent cd ~
         silent !mkdir .vim\bundle
         silent !git clone https://github.com/gmarik/vundle .vim/bundle/vundle
@@ -33,22 +32,23 @@ call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
-    " Bundle 'tpope/vim-vinegar'
-    Bundle 'jeetsukumaran/vim-buffergator'
+    " Bundle 'jeetsukumaran/vim-buffergator'
     Bundle 'vim-scripts/open-terminal-filemanager'
-    Bundle 'luochen1990/rainbow'
-    Bundle 'tomtom/tcomment_vim'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'sheerun/vim-polyglot'
+    " Bundle 'luochen1990/rainbow'
+    " Bundle 'tomtom/tcomment_vim'
 
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-obsession'
-    Bundle 'tpope/vim-surround'
-    Bundle 'plasticboy/vim-markdown'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'zhaocai/GoldenView.Vim'
+    Bundle 'ctrlpvim/ctrlp.vim'
+    " Bundle 'scrooloose/syntastic'
+    " Bundle 'sheerun/vim-polyglot'
+    " Bundle 'jiangmiao/auto-pairs'
+
+    " Bundle 'tpope/vim-fugitive'
+    " Bundle 'tpope/vim-repeat'
+    " Bundle 'tpope/vim-obsession'
+    " Bundle 'tpope/vim-surround'
+    " Bundle 'plasticboy/vim-markdown'
+    " Bundle 'sjl/gundo.vim'
+    " Bundle 'zhaocai/GoldenView.Vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
@@ -88,14 +88,9 @@ let macvim_skip_colorscheme=1
     " }
     set guioptions-=m   " disable menubar
     set guioptions-=T   " disable toolbar
-    " set guifont=Source\ Code\ Pro\ For\ Powerline:h12
     if has("gui_win32")
-        " set guifont=Source\ Code\ Pro\ For\ Powerline:h9
-        " set guifont=Ubuntu\ Mono\ For\ Powerline:h10
-        " set guifont=Droid\ Sans\ Mono\ For\ Powerline:h8
-        set guifont=DejaVu\ Sans\ Mono\ For\ Powerline:h8
+        set guifont=Ubuntu\ Mono\ For\ Powerline:h9
     endif
-
 
     " absolute line numbers in insert mode, relative otherwise for easy movement
     au InsertEnter * :set nu
@@ -167,21 +162,18 @@ endif
     vnoremap < <gv
     vnoremap > >gv
    
-    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-    " }
 " }
 
 " { STATUS BAR
   set laststatus=2  " always show the status bar
 " }
 
-" automatically reload vimrc when it's saved
-autocmd BufWritePost .vimrc source ~/.vimrc
 
    
 " { Quick editing
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>eb :vsplit $HOME/.bash_profile<cr>
+    " quick resourcing of vimrc
+    map <leader>vs :source $MYVIMRC<cr>
     nnoremap <leader>evc :vsplit $HOME/.vim/vim_cheatsheet.txt<cr>
 " }
 
@@ -202,10 +194,13 @@ endif
         au BufRead,BufNewFile *.scss set filetype=scss
     " }
     " { Python
-        let python_highlight_all=1
-        autocmd BufRead,BufNewFile *.py let python_highlight_all=1
-        autocmd BufWritePre *.py :%s/\s\+$//e
-        au FileType python set omnifunc=pythoncomplete#Complete
+    "   all things in here should be only used when python file
+    "   is edited
+        " let python_highlight_all=1
+        " autocmd BufRead,BufNewFile *.py let python_highlight_all=1
+        " autocmd BufWritePre *.py :%s/\s\+$//e
+
+        map <Leader>br Oimport ipdb; ipdb.set_trace()  # BREAKPOINT<C-c>
     " }
     " { Markdown
         au BufRead,BufNewFile *.md set filetype=markdown
@@ -217,12 +212,18 @@ endif
         let g:airline_powerline_fonts=1
         let g:airline_theme="base16"
     " }
-    " { Goldenview
-        let g:goldenview__enable_default_mapping = 0
 
-        nmap <silent> <M-l> <Plug>GoldenViewSplit
-        nmap <silent> <M-n> <Plug>GoldenViewNext
-        nmap <silent> <M-p> <Plug>GoldenViewPrevious
+    " { CtrlP
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_working_pathe_mode = 'rw'
+    " }
+
+    " { Goldenview
+        " let g:goldenview__enable_default_mapping = 0
+        "
+        " nmap <silent> <M-l> <Plug>GoldenViewSplit
+        " nmap <silent> <M-n> <Plug>GoldenViewNext
+        " nmap <silent> <M-p> <Plug>GoldenViewPrevious
     " }
     " { NERDTree SETTINGS
         let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
@@ -231,34 +232,32 @@ endif
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
     " }
-    " { SuperTab
-        let g:SuperTabDefaultCompletionType = "context"
-    " }
-    " { PyDiction
-        let g:pydiction_location = '~/bundle/pydiction/complete-dict'
-    " }
-    " { TagList
-        nnoremap <silent> <F8> :TlistToggle<CR>
-        let Tlist_Use_Right_Window = 1
-    " }
-    " { Rainbow paranthesis
-        let g:rainbow_active = 1
+    " { Rainbow parenthesis
+        " let g:rainbow_active = 1
     " }
     " { JEDI
-        let g:jedi#usages_command = "<leader>z"
-        let g:jedi#popup_on_dot=0
-        let g:jedi#popup_select_first=0
-        let g:jedi#use_tabs_not_buffers=0
+        let g:jedi#force_py_version=3
+        let g:jedi#auto_initialization=1
+        " let g:jedi#usages_command = "<leader>z"
+        " let g:jedi#popup_on_dot=0
+        " let g:jedi#popup_select_first=0
+        " let g:jedi#use_tabs_not_buffers=0
     "    let g:jedi#show_call_signatures=0
     " }
+
+    " { Open-Terminal-Filemanager
+        nnoremap <silent> <M-e> :OpenFilemanager<CR><CR>
+        nnoremap <silent> <M-d> :OpenTerminal<CR>
+    " }
+
     " { SYNTASTIC
-       let g:syntastic_python_checkers=['pylint', 'flake8', 'pep8']
-       let g:syntastic_enable_signs=1
-       let g:syntastic_auto_jump=0
-       let g:syntastic_always_populate_loc_list=1
-       let g:syntastic_auto_loc_list=1
+       " let g:syntastic_python_checkers=['flake8', 'pep8']
+       " let g:syntastic_enable_signs=1
+       " let g:syntastic_auto_jump=0
+       " let g:syntastic_always_populate_loc_list=1
+       " let g:syntastic_auto_loc_list=1
     " }
     " { TCOMMENT
-       map <leader>c <c-_><c-_> 
+       " map <leader>c <c-_><c-_> 
     " }
 " }
