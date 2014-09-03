@@ -34,21 +34,32 @@ call vundle#rc()
     Bundle 'scrooloose/nerdtree'
     " Bundle 'jeetsukumaran/vim-buffergator'
     Bundle 'vim-scripts/open-terminal-filemanager'
-    " Bundle 'luochen1990/rainbow'
-    " Bundle 'tomtom/tcomment_vim'
+    Bundle 'Shougo/unite.vim'
 
     Bundle 'ctrlpvim/ctrlp.vim'
-    " Bundle 'scrooloose/syntastic'
+    Bundle 'tpope/vim-surround'  
+    Bundle 'tpope/vim-commentary'
+    Bundle 'Raimondi/delimitMate'
+
+    Bundle 'luochen1990/rainbow' 
+    Bundle 'reedes/vim-thematic'
+
+    Bundle 'scrooloose/syntastic'
+    " Bundle 'Valloric/YouCompleteMe'
+
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'airblade/vim-gitgutter'
+
+    Bundle 'SirVer/ultisnips'
+
     " Bundle 'sheerun/vim-polyglot'
     " Bundle 'jiangmiao/auto-pairs'
 
-    " Bundle 'tpope/vim-fugitive'
     " Bundle 'tpope/vim-repeat'
     " Bundle 'tpope/vim-obsession'
-    " Bundle 'tpope/vim-surround'
-    " Bundle 'plasticboy/vim-markdown'
     " Bundle 'sjl/gundo.vim'
     " Bundle 'zhaocai/GoldenView.Vim'
+    " Bundle 'tomtom/tcomment_vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
@@ -59,10 +70,14 @@ call vundle#rc()
     " }
 
     " { LANGUAGE SUPPORT
-        " { CSS/SCSS
+        " { Web stuff 
             Bundle 'cakebaker/scss-syntax.vim'
+            Bundle 'groenewege/vim-less'
         " }
         
+        " { Markdown
+            Bundle 'plasticboy/vim-markdown'
+        " }
         " { Python
             Bundle 'davidhalter/jedi-vim'
         " }
@@ -233,7 +248,7 @@ endif
         let NERDTreeQuitOnOpen=1
     " }
     " { Rainbow parenthesis
-        " let g:rainbow_active = 1
+        let g:rainbow_active = 1
     " }
     " { JEDI
         let g:jedi#force_py_version=3
@@ -251,11 +266,11 @@ endif
     " }
 
     " { SYNTASTIC
-       " let g:syntastic_python_checkers=['flake8', 'pep8']
-       " let g:syntastic_enable_signs=1
-       " let g:syntastic_auto_jump=0
-       " let g:syntastic_always_populate_loc_list=1
-       " let g:syntastic_auto_loc_list=1
+       let g:syntastic_python_checkers=['flake8', 'pep8']
+       let g:syntastic_enable_signs=1
+       let g:syntastic_auto_jump=0
+       let g:syntastic_always_populate_loc_list=1
+       let g:syntastic_auto_loc_list=1
     " }
     " { TCOMMENT
        " map <leader>c <c-_><c-_> 
