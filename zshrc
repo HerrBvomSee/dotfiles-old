@@ -40,24 +40,15 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew osx python mercurial)
+plugins=(git brew osx python mercurial git-flow sublime)
 
 source $ZSH/oh-my-zsh.sh
 
 
 # Customize to your needs...
 
-# set default architecture on 10.8 to 64bit
+# set default architecture on 10.9 to 64bit
 export ARCHFLAGS="-arch x86_64"
 
 # homebrew paths
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/lib/python2.7/site-packages:$PATH
-
-# rbenv settings
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# Pythons virtualenvwrapper
-# export WORKON_HOME=~/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
+export PATH=/Users/tbass/miniconda3/bin:/usr/local/bin:/usr/local/sbin:$PATH

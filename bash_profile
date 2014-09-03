@@ -13,3 +13,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # load a possible bashrc if it exists
 test -f ~/.bashrc && source ~/.bashrc
+
+# added by Miniconda3 3.6.0 installer
+export PATH="/Users/tbass/miniconda3/bin:$PATH"
