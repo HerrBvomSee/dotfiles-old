@@ -1,6 +1,6 @@
 ﻿filetype off            " required!
 set modelines=0         " disable modelines support
-syntax on
+syntax enable
 
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
 " across (heterogeneous) systems easier. 
@@ -32,9 +32,9 @@ call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
     Bundle 'scrooloose/nerdtree'
-    " Bundle 'jeetsukumaran/vim-buffergator'
-    Bundle 'vim-scripts/open-terminal-filemanager'
-    Bundle 'Shougo/unite.vim'
+    Bundle 'jeetsukumaran/vim-buffergator'
+    " Bundle 'vim-scripts/open-terminal-filemanager'
+    Bundle 'justinmk/vim-gtfo'
 
     Bundle 'ctrlpvim/ctrlp.vim'
     Bundle 'tpope/vim-surround'  
@@ -67,6 +67,7 @@ call vundle#rc()
         Bundle 'tomasr/molokai'
         Bundle 'Pychimp/vim-luna'
         Bundle 'chriskempson/base16-vim'
+        Bundle 'altercation/vim-colors-solarized'
     " }
 
     " { LANGUAGE SUPPORT
@@ -90,7 +91,7 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    colorscheme base16-flat
+    " colorscheme solarized
 
     set showmode
     set relativenumber
@@ -104,7 +105,8 @@ let macvim_skip_colorscheme=1
     set guioptions-=m   " disable menubar
     set guioptions-=T   " disable toolbar
     if has("gui_win32")
-        set guifont=Ubuntu\ Mono\ For\ Powerline:h9
+        set guifont=Ubuntu\ Mono:h9
+        colorscheme base16-flat
     endif
 
     " absolute line numbers in insert mode, relative otherwise for easy movement
@@ -224,8 +226,10 @@ endif
 
 " { PLUGIN SETTINGS
     " { Airline
-        let g:airline_powerline_fonts=1
-        let g:airline_theme="base16"
+        let g:airline_powerline_fonts=0
+        let g:airline_left_sep=''
+        let g:airline_right_sep=''
+        " let g:airline_theme="base16"
     " }
 
     " { CtrlP
@@ -253,16 +257,17 @@ endif
     " { JEDI
         let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
-        " let g:jedi#usages_command = "<leader>z"
+        let g:jedi#usages_command = "<leader>z"
         " let g:jedi#popup_on_dot=0
-        " let g:jedi#popup_select_first=0
-        " let g:jedi#use_tabs_not_buffers=0
+        let g:jedi#popup_select_first=0
+        let g:jedi#use_tabs_not_buffers=0
     "    let g:jedi#show_call_signatures=0
     " }
 
     " { Open-Terminal-Filemanager
-        nnoremap <silent> <M-e> :OpenFilemanager<CR><CR>
-        nnoremap <silent> <M-d> :OpenTerminal<CR>
+        let g:gtfo#terminals = { 'win' : 'powershell -NoLogo -NoExit -Command' }
+        " nnoremap <silent> <M-e> :OpenFilemanager<CR><CR>
+        " nnoremap <silent> <M-d> :OpenTerminal<CR>
     " }
 
     " { SYNTASTIC
@@ -271,8 +276,5 @@ endif
        let g:syntastic_auto_jump=0
        let g:syntastic_always_populate_loc_list=1
        let g:syntastic_auto_loc_list=1
-    " }
-    " { TCOMMENT
-       " map <leader>c <c-_><c-_> 
     " }
 " }
