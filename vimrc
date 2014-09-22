@@ -1,11 +1,11 @@
 ﻿filetype off            " required!
 set modelines=0         " disable modelines support
-syntax enable
+syntax on
 
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
 " across (heterogeneous) systems easier. 
 if has('win32') || has('win64')
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$VIMHOME/.vim/after
 endif
 
 " Setting up Vundle - the vim plugin bundler
@@ -31,35 +31,34 @@ call vundle#rc()
     " required!
     Bundle 'gmarik/vundle'
     Bundle 'bling/vim-airline'
+
     Bundle 'scrooloose/nerdtree'
     Bundle 'jeetsukumaran/vim-buffergator'
-    " Bundle 'vim-scripts/open-terminal-filemanager'
     Bundle 'justinmk/vim-gtfo'
+    Bundle 'sjl/gundo.vim'
+    Plugin 'myusuf3/numbers.vim'    
+    Plugin 'rking/ag.vim'
 
+    Bundle 'xolox/vim-session'
+    Plugin 'xolox/vim-misc' 
+    
     Bundle 'ctrlpvim/ctrlp.vim'
     Bundle 'tpope/vim-surround'  
-    Bundle 'tpope/vim-commentary'
     Bundle 'Raimondi/delimitMate'
+    Plugin 'scrooloose/nerdcommenter'
 
+    Bundle 'Yggdroot/indentLine'
+    Bundle 'whatyouhide/vim-lengthmatters'
     Bundle 'luochen1990/rainbow' 
     Bundle 'reedes/vim-thematic'
 
     Bundle 'scrooloose/syntastic'
-    " Bundle 'Valloric/YouCompleteMe'
 
     Bundle 'tpope/vim-fugitive'
     Bundle 'airblade/vim-gitgutter'
 
     Bundle 'SirVer/ultisnips'
 
-    " Bundle 'sheerun/vim-polyglot'
-    " Bundle 'jiangmiao/auto-pairs'
-
-    " Bundle 'tpope/vim-repeat'
-    " Bundle 'tpope/vim-obsession'
-    " Bundle 'sjl/gundo.vim'
-    " Bundle 'zhaocai/GoldenView.Vim'
-    " Bundle 'tomtom/tcomment_vim'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
@@ -79,8 +78,13 @@ call vundle#rc()
         " { Markdown
             Bundle 'plasticboy/vim-markdown'
         " }
+
         " { Python
             Bundle 'davidhalter/jedi-vim'
+        " }
+
+        " { SQL
+            Plugin 'shmup/vim-sql-syntax'
         " }
     " }
 " }
@@ -97,7 +101,7 @@ let macvim_skip_colorscheme=1
     set relativenumber
     set numberwidth=5
     set ruler
-    set colorcolumn=80
+    "set colorcolumn=80
     " {
         autocmd WinLeave * set nocursorline
         autocmd WinEnter * set cursorline
@@ -229,7 +233,6 @@ endif
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
         let g:airline_right_sep=''
-        " let g:airline_theme="base16"
     " }
 
     " { CtrlP
@@ -237,13 +240,6 @@ endif
         let g:ctrlp_working_pathe_mode = 'rw'
     " }
 
-    " { Goldenview
-        " let g:goldenview__enable_default_mapping = 0
-        "
-        " nmap <silent> <M-l> <Plug>GoldenViewSplit
-        " nmap <silent> <M-n> <Plug>GoldenViewNext
-        " nmap <silent> <M-p> <Plug>GoldenViewPrevious
-    " }
     " { NERDTree SETTINGS
         let NERDTreeIgnore=['\.py[oc]', '\.swp', '\.pj'] ", '\.~$']
         map <silent> <C-s> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
@@ -251,9 +247,11 @@ endif
         let NERDTreeShowHidden=1
         let NERDTreeQuitOnOpen=1
     " }
+
     " { Rainbow parenthesis
         let g:rainbow_active = 1
     " }
+
     " { JEDI
         let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
@@ -276,5 +274,14 @@ endif
        let g:syntastic_auto_jump=0
        let g:syntastic_always_populate_loc_list=1
        let g:syntastic_auto_loc_list=1
+    " }
+
+    " { SessionManager
+        let g:session_autoload='no' 
+        let g:session_autosave='no'
+    " }
+    
+    " { lengthmatters
+        let g:lengthmatters_colors='ctermbg=244 guibg=234'
     " }
 " }
