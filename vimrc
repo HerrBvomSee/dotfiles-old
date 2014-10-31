@@ -46,6 +46,7 @@ call vundle#rc()
     Bundle 'tpope/vim-surround'  
     Bundle 'Raimondi/delimitMate'
     Plugin 'scrooloose/nerdcommenter'
+    Plugin 'ervandew/supertab'
 
     Bundle 'Yggdroot/indentLine'
     Bundle 'whatyouhide/vim-lengthmatters'
@@ -217,10 +218,7 @@ endif
     " { Python
     "   all things in here should be only used when python file
     "   is edited
-        " let python_highlight_all=1
-        " autocmd BufRead,BufNewFile *.py let python_highlight_all=1
-        " autocmd BufWritePre *.py :%s/\s\+$//e
-
+        autocmd BufWritePre *.py :%s/\s\+$//e
         map <Leader>br Oimport ipdb; ipdb.set_trace()  # BREAKPOINT<C-c>
     " }
     " { Markdown
@@ -234,7 +232,11 @@ endif
         let g:airline_left_sep=''
         let g:airline_right_sep=''
     " }
-
+    
+    " { Buffergator
+        let g:buffergator_viewport_split_policy="T"
+        let g:buffergator_hsplit_size=10
+    " }
     " { CtrlP
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_working_pathe_mode = 'rw'
@@ -248,18 +250,25 @@ endif
         let NERDTreeQuitOnOpen=1
     " }
 
+    " { NERDCommenter
+        let g:NERDSpaceDelims=1
+    " }
+    
     " { Rainbow parenthesis
         let g:rainbow_active = 1
     " }
 
     " { JEDI
+        " disable 
+        autocmd FileType python setlocal completeopt-=preview
         let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
         let g:jedi#usages_command = "<leader>z"
-        " let g:jedi#popup_on_dot=0
+        let g:jedi#popup_on_dot=0
         let g:jedi#popup_select_first=0
         let g:jedi#use_tabs_not_buffers=0
-    "    let g:jedi#show_call_signatures=0
+        let g:jedi#show_call_signatures=1
+        let g:jedi#completions_enabled=1
     " }
 
     " { Open-Terminal-Filemanager
@@ -274,6 +283,8 @@ endif
        let g:syntastic_auto_jump=0
        let g:syntastic_always_populate_loc_list=1
        let g:syntastic_auto_loc_list=1
+       let g:syntastic_check_on_wq=0
+       let g:syntastic_enable_balloons=0
     " }
 
     " { SessionManager
