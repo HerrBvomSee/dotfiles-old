@@ -53,6 +53,7 @@ call vundle#rc()
     Bundle 'luochen1990/rainbow' 
     Bundle 'reedes/vim-thematic'
 
+    " Plugin 'Shougo/neocomplete.vim'
     Bundle 'scrooloose/syntastic'
 
     Bundle 'tpope/vim-fugitive'
@@ -82,6 +83,8 @@ call vundle#rc()
 
         " { Python
             Bundle 'davidhalter/jedi-vim'
+            Plugin 'jmcantrell/vim-virtualenv'
+            Plugin 'hynek/vim-python-pep8-indent'
         " }
 
         " { SQL
@@ -112,6 +115,9 @@ let macvim_skip_colorscheme=1
     if has("gui_win32")
         set guifont=Ubuntu\ Mono:h9
         colorscheme base16-flat
+    else
+        set guifont=Ubuntu\ Mono:h12
+        colorscheme base16-ashes
     endif
 
     " absolute line numbers in insert mode, relative otherwise for easy movement
@@ -162,7 +168,7 @@ endif
     set ignorecase
     set smartcase
 " }
-    
+
 " { KEY MAPPINGS
     let mapleader=","  " set leader to a more common key
 
@@ -183,7 +189,7 @@ endif
     " block movement for indention
     vnoremap < <gv
     vnoremap > >gv
-   
+
 " }
 
 " { STATUS BAR
@@ -191,7 +197,7 @@ endif
 " }
 
 
-   
+
 " { Quick editing
     nnoremap <leader>ev :e $MYVIMRC<cr>
     " quick resourcing of vimrc
@@ -261,7 +267,7 @@ endif
     " { JEDI
         " disable 
         autocmd FileType python setlocal completeopt-=preview
-        let g:jedi#force_py_version=3
+"        let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
         let g:jedi#usages_command = "<leader>z"
         let g:jedi#popup_on_dot=0
@@ -295,4 +301,9 @@ endif
     " { lengthmatters
         let g:lengthmatters_colors='ctermbg=244 guibg=234'
     " }
+    "
+    " { vim-virtualenv
+        let g:virtualenv_directory = '~/.virtualenvs'
+    " }
+
 " }

@@ -51,4 +51,20 @@ source $ZSH/oh-my-zsh.sh
 export ARCHFLAGS="-arch x86_64"
 
 # homebrew paths
-export PATH=/Users/tbass/miniconda3/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+export WORKON_HOME=$HOME/.virtualenvs
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export PROJECT_HOME=$HOME/Dropbox/Projekte
+source /usr/local/bin/virtualenvwrapper.sh
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT=/Users/tbass/Dropbox/Projekte/libraries/cocos2d-x-3.3/tools/cocos2d-console/bin
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT=/Users/tbass/Dropbox/Projekte/libraries/cocos2d-x-3.3
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT=/Users/tbass/Dropbox/Projekte/libraries/cocos2d-x-3.3/templates
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
