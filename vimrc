@@ -242,7 +242,10 @@ endif
     " { Buffergator
         let g:buffergator_viewport_split_policy="T"
         let g:buffergator_hsplit_size=10
+        let g:buffergator_sort_regime="mru"
+        map <silent> <C-b> :BuffergatorOpen<CR>
     " }
+    
     " { CtrlP
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_working_pathe_mode = 'rw'
@@ -267,13 +270,14 @@ endif
     " { JEDI
         " disable 
         autocmd FileType python setlocal completeopt-=preview
-"        let g:jedi#force_py_version=3
+        let g:jedi#auto_vim_configuration=0
+        let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
         let g:jedi#usages_command = "<leader>z"
-        let g:jedi#popup_on_dot=0
+        let g:jedi#popup_on_dot=1
         let g:jedi#popup_select_first=0
         let g:jedi#use_tabs_not_buffers=0
-        let g:jedi#show_call_signatures=1
+        let g:jedi#show_call_signatures="1"
         let g:jedi#completions_enabled=1
     " }
 
