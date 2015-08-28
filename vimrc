@@ -41,7 +41,8 @@ call vundle#rc()
 
     Bundle 'xolox/vim-session'
     Plugin 'xolox/vim-misc' 
-    
+    Plugin 'xolox/vim-colorscheme-switcher'
+
     Bundle 'ctrlpvim/ctrlp.vim'
     Bundle 'tpope/vim-surround'  
     Bundle 'Raimondi/delimitMate'
@@ -58,9 +59,12 @@ call vundle#rc()
 
     Bundle 'tpope/vim-fugitive'
     Bundle 'airblade/vim-gitgutter'
-
+    Bundle 'elzr/vim-json'
     Bundle 'SirVer/ultisnips'
 
+    Bundle 'mhinz/vim-startify'
+
+    Plugin 'Taverius/vim-colorscheme-manager'
 
     " { COLOR SCHEMES
         Bundle 'vim-scripts/mayansmoke'
@@ -69,6 +73,11 @@ call vundle#rc()
         Bundle 'Pychimp/vim-luna'
         Bundle 'chriskempson/base16-vim'
         Bundle 'altercation/vim-colors-solarized'
+        Bundle 'fmoralesc/vim-vitamins'
+        Bundle 'morhetz/gruvbox'
+        Bundle 'w0ng/vim-hybrid'
+        Bundle 'nanotech/jellybeans.vim'
+
     " }
 
     " { LANGUAGE SUPPORT
@@ -105,7 +114,7 @@ let macvim_skip_colorscheme=1
     set relativenumber
     set numberwidth=5
     set ruler
-    "set colorcolumn=80
+    set colorcolumn=80
     " {
         autocmd WinLeave * set nocursorline
         autocmd WinEnter * set cursorline
@@ -114,7 +123,7 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     if has("gui_win32")
         set guifont=Ubuntu\ Mono:h9
-        colorscheme base16-flat
+        colorscheme gruvbox
     else
         set guifont=Ubuntu\ Mono:h12
         colorscheme base16-ashes
@@ -230,6 +239,9 @@ endif
     " { Markdown
         au BufRead,BufNewFile *.md set filetype=markdown
     " }
+    " { json
+        au BufRead,BufNewFile *.conf set filetype=json
+    " }
 " }
 
 " { PLUGIN SETTINGS
@@ -301,7 +313,19 @@ endif
         let g:session_autoload='no' 
         let g:session_autosave='no'
     " }
-    
+    " { Startify
+    let g:startify_list_order = [
+      \ ['   MRU '],
+      \ 'files' ,
+      \ ['   MRU DIR '],
+      \ 'dir',
+      \ ['   Sessions '],
+      \ 'sessions',
+      \ ['   Bookmarks '],
+      \ 'bookmarks',
+      \ ]
+    " }
+
     " { lengthmatters
         let g:lengthmatters_colors='ctermbg=244 guibg=234'
     " }
@@ -310,4 +334,7 @@ endif
         let g:virtualenv_directory = '~/.virtualenvs'
     " }
 
+    " { vim-json
+        let g:vim_json_syntax_conceal = 0
+    " }
 " }
