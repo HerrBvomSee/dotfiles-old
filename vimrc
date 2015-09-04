@@ -61,7 +61,9 @@ call vundle#rc()
     Bundle 'airblade/vim-gitgutter'
     Bundle 'elzr/vim-json'
     Bundle 'SirVer/ultisnips'
-
+    Bundle 'terryma/vim-expand-region'
+    Bundle 'AndrewRadev/splitjoin.vim'  
+    " need to check it - does not work as intended for Python (for me)
     Bundle 'mhinz/vim-startify'
 
     Plugin 'Taverius/vim-colorscheme-manager'
@@ -77,7 +79,6 @@ call vundle#rc()
         Bundle 'morhetz/gruvbox'
         Bundle 'w0ng/vim-hybrid'
         Bundle 'nanotech/jellybeans.vim'
-
     " }
 
     " { LANGUAGE SUPPORT
@@ -108,13 +109,12 @@ let macvim_skip_colorscheme=1
 
 " { LOOK and FEEL
     set background=dark
-    " colorscheme solarized
 
     set showmode
     set relativenumber
     set numberwidth=5
     set ruler
-    set colorcolumn=80
+    " set colorcolumn=80
     " {
         autocmd WinLeave * set nocursorline
         autocmd WinEnter * set cursorline
@@ -122,7 +122,9 @@ let macvim_skip_colorscheme=1
     set guioptions-=m   " disable menubar
     set guioptions-=T   " disable toolbar
     if has("gui_win32")
-        set guifont=Ubuntu\ Mono:h9
+        " set guifont=Fira\ Mono:h10
+        set guifont=Hack:h8
+        " set guifont=Ubuntu\ Mono:h9
         colorscheme gruvbox
     else
         set guifont=Ubuntu\ Mono:h12
@@ -279,6 +281,11 @@ endif
         let g:rainbow_active = 1
     " }
 
+    " { Colorscheme switcher
+        let g:colorscheme_switcher_exclude = []
+        let g:colorscheme_switcher_exclude_builtins = 1
+    " }
+
     " { JEDI
         " disable 
         autocmd FileType python setlocal completeopt-=preview
@@ -314,16 +321,17 @@ endif
         let g:session_autosave='no'
     " }
     " { Startify
-    let g:startify_list_order = [
-      \ ['   MRU '],
-      \ 'files' ,
-      \ ['   MRU DIR '],
-      \ 'dir',
-      \ ['   Sessions '],
-      \ 'sessions',
-      \ ['   Bookmarks '],
-      \ 'bookmarks',
-      \ ]
+        let g:startify_list_order = [
+          \ ['   MRU '],
+          \ 'files' ,
+          \ ['   MRU DIR '],
+          \ 'dir',
+          \ ['   Sessions '],
+          \ 'sessions',
+          \ ['   Bookmarks '],
+          \ 'bookmarks',
+          \ ]
+        autocmd User Startified setlocal buftype=
     " }
 
     " { lengthmatters
@@ -336,5 +344,9 @@ endif
 
     " { vim-json
         let g:vim_json_syntax_conceal = 0
+    " }
+    " { expand-region
+        vmap v <Plug>(expand_region_expand)
+        vmap <C-v> <Plug>(expand_region_shrink)
     " }
 " }
