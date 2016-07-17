@@ -42,6 +42,7 @@ call vundle#rc()
     Bundle 'xolox/vim-session'
     Plugin 'xolox/vim-misc' 
     Plugin 'xolox/vim-colorscheme-switcher'
+    Plugin 'kkoenig/wimproved.vim'
 
     Bundle 'ctrlpvim/ctrlp.vim'
     Bundle 'tpope/vim-surround'  
@@ -65,7 +66,8 @@ call vundle#rc()
     Bundle 'AndrewRadev/splitjoin.vim'  
     " need to check it - does not work as intended for Python (for me)
     Bundle 'mhinz/vim-startify'
-
+    Plugin 'samsonw/vim-task'
+    
     Plugin 'Taverius/vim-colorscheme-manager'
 
     " { COLOR SCHEMES
@@ -79,6 +81,7 @@ call vundle#rc()
         Bundle 'morhetz/gruvbox'
         Bundle 'w0ng/vim-hybrid'
         Bundle 'nanotech/jellybeans.vim'
+        Bundle 'junegunn/seoul256.vim'
     " }
 
     " { LANGUAGE SUPPORT
@@ -97,6 +100,12 @@ call vundle#rc()
             Plugin 'hynek/vim-python-pep8-indent'
         " }
 
+        " { LUA
+            Bundle 'xolox/vim-lua-ftplugin'
+            Plugin 'xolox/vim-lua-inspect'            
+            Plugin 'lua.vim'
+        " }
+        "
         " { SQL
             Plugin 'shmup/vim-sql-syntax'
         " }
@@ -204,7 +213,7 @@ endif
 " }
 
 " { STATUS BAR
-  set laststatus=2  " always show the status bar
+    set laststatus=2  " always show the status bar
 " }
 
 
@@ -317,23 +326,38 @@ endif
     " }
 
     " { SessionManager
+        set sessionoptions+=resize,winpos
+        set sessionoptions-=help
         let g:session_autoload='no' 
         let g:session_autosave='no'
     " }
     " { Startify
-        let g:startify_list_order = [
-          \ ['   MRU '],
-          \ 'files' ,
-          \ ['   MRU DIR '],
-          \ 'dir',
-          \ ['   Sessions '],
-          \ 'sessions',
-          \ ['   Bookmarks '],
-          \ 'bookmarks',
-          \ ]
+        let g:startify_list_order = [ 
+                    \ ['   Sessions '], 
+                    \ 'sessions', 
+                    \ ['   MRU '], 
+                    \ 'files' , 
+                    \ ['   MRU DIR '], 
+                    \ 'dir', 
+                    \ ['   Bookmarks '], 
+                    \ 'bookmarks', 
+                    \ ]
+        let g:startify_session_savevars = [
+                    \ 'g:startify_session_savevars', 
+                    \ 'g:startify_session_savecmds', 
+                    \ 'g:random_plugin_use_feature' 
+                    \ ]
         autocmd User Startified setlocal buftype=
+        let g:startify_session_autoload=1
+        let g:startify_session_persistence=1
+        let g:startify_session_delete_buffers=1
+        let g:startify_change_to_dir=1
     " }
 
+    " { supertab
+        let g:SuperTabDefaultCompletionType = "<c-n>"
+    " }
+    
     " { lengthmatters
         let g:lengthmatters_colors='ctermbg=244 guibg=234'
     " }
@@ -345,6 +369,7 @@ endif
     " { vim-json
         let g:vim_json_syntax_conceal = 0
     " }
+    
     " { expand-region
         vmap v <Plug>(expand_region_expand)
         vmap <C-v> <Plug>(expand_region_shrink)
