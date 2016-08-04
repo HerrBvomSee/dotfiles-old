@@ -41,7 +41,6 @@ call vundle#rc()
 
     Bundle 'xolox/vim-session'
     Plugin 'xolox/vim-misc' 
-    Plugin 'xolox/vim-colorscheme-switcher'
     Plugin 'kkoenig/wimproved.vim'
 
     Bundle 'ctrlpvim/ctrlp.vim'
@@ -53,7 +52,6 @@ call vundle#rc()
     Bundle 'Yggdroot/indentLine'
     Bundle 'whatyouhide/vim-lengthmatters'
     Bundle 'luochen1990/rainbow' 
-    Bundle 'reedes/vim-thematic'
 
     " Plugin 'Shougo/neocomplete.vim'
     Bundle 'scrooloose/syntastic'
@@ -64,25 +62,27 @@ call vundle#rc()
     Bundle 'SirVer/ultisnips'
     Bundle 'terryma/vim-expand-region'
     Bundle 'AndrewRadev/splitjoin.vim'  
-    " need to check it - does not work as intended for Python (for me)
-    Bundle 'mhinz/vim-startify'
     Plugin 'samsonw/vim-task'
-    
-    Plugin 'Taverius/vim-colorscheme-manager'
 
-    " { COLOR SCHEMES
-        Bundle 'vim-scripts/mayansmoke'
-        Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
-        Bundle 'tomasr/molokai'
-        Bundle 'Pychimp/vim-luna'
-        Bundle 'chriskempson/base16-vim'
-        Bundle 'altercation/vim-colors-solarized'
-        Bundle 'fmoralesc/vim-vitamins'
-        Bundle 'morhetz/gruvbox'
-        Bundle 'w0ng/vim-hybrid'
-        Bundle 'nanotech/jellybeans.vim'
-        Bundle 'junegunn/seoul256.vim'
-    " }
+    " {{{ EYECANDY
+        Plugin 'Taverius/vim-colorscheme-manager'   " Managing color schemes
+        Plugin 'xolox/vim-colorscheme-switcher'
+        
+        " { COLOR SCHEMES
+            Bundle 'vim-scripts/mayansmoke'
+            Bundle 'daylerees/colour-schemes', { 'rtp': 'vim-themes' }
+            Bundle 'tomasr/molokai'
+            Bundle 'Pychimp/vim-luna'
+            Bundle 'chriskempson/base16-vim'
+            Bundle 'altercation/vim-colors-solarized'
+            Bundle 'fmoralesc/vim-vitamins'
+            Bundle 'morhetz/gruvbox'
+            Bundle 'w0ng/vim-hybrid'
+            Bundle 'nanotech/jellybeans.vim'
+            Plugin 'flazz/vim-colorschemes'             " Colorschemes
+            Bundle 'junegunn/seoul256.vim'
+        " }
+    " }}}
 
     " { LANGUAGE SUPPORT
         " { Web stuff 
@@ -90,8 +90,10 @@ call vundle#rc()
             Bundle 'groenewege/vim-less'
         " }
         
-        " { Markdown
-            Bundle 'plasticboy/vim-markdown'
+        " { Markup
+            Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
+            Plugin 'Rykka/riv.vim'                      " ReStructuredText plugin
+            Plugin 'plasticboy/vim-markdown'            " Markdown support
         " }
 
         " { Python
@@ -209,14 +211,11 @@ endif
     " block movement for indention
     vnoremap < <gv
     vnoremap > >gv
-
 " }
 
 " { STATUS BAR
     set laststatus=2  " always show the status bar
 " }
-
-
 
 " { Quick editing
     nnoremap <leader>ev :e $MYVIMRC<cr>
@@ -271,7 +270,7 @@ endif
     
     " { CtrlP
         let g:ctrlp_map = '<c-p>'
-        let g:ctrlp_working_pathe_mode = 'rw'
+        let g:ctrlp_working_pathe_mode = 'arw'
     " }
 
     " { NERDTree SETTINGS
@@ -293,6 +292,7 @@ endif
     " { Colorscheme switcher
         let g:colorscheme_switcher_exclude = []
         let g:colorscheme_switcher_exclude_builtins = 1
+        let g:colorscheme_switcher_keep_background = 1
     " }
 
     " { JEDI
@@ -302,6 +302,9 @@ endif
         let g:jedi#force_py_version=3
         let g:jedi#auto_initialization=1
         let g:jedi#usages_command = "<leader>z"
+        let g:jedi#goto_assignments_command = "<leader>g"
+        let g:jedi#goto_definitions_command = "<leader>d"
+        let g:jedi#documentation_command = "K"
         let g:jedi#popup_on_dot=1
         let g:jedi#popup_select_first=0
         let g:jedi#use_tabs_not_buffers=0
@@ -310,7 +313,7 @@ endif
     " }
 
     " { Open-Terminal-Filemanager
-        let g:gtfo#terminals = { 'win' : 'powershell -NoLogo -NoExit -Command' }
+        " let g:gtfo#terminals = { 'win' : 'powershell -NoLogo -NoExit -Command' }
         " nnoremap <silent> <M-e> :OpenFilemanager<CR><CR>
         " nnoremap <silent> <M-d> :OpenTerminal<CR>
     " }
@@ -331,35 +334,13 @@ endif
         let g:session_autoload='no' 
         let g:session_autosave='no'
     " }
-    " { Startify
-        let g:startify_list_order = [ 
-                    \ ['   Sessions '], 
-                    \ 'sessions', 
-                    \ ['   MRU '], 
-                    \ 'files' , 
-                    \ ['   MRU DIR '], 
-                    \ 'dir', 
-                    \ ['   Bookmarks '], 
-                    \ 'bookmarks', 
-                    \ ]
-        let g:startify_session_savevars = [
-                    \ 'g:startify_session_savevars', 
-                    \ 'g:startify_session_savecmds', 
-                    \ 'g:random_plugin_use_feature' 
-                    \ ]
-        autocmd User Startified setlocal buftype=
-        let g:startify_session_autoload=1
-        let g:startify_session_persistence=1
-        let g:startify_session_delete_buffers=1
-        let g:startify_change_to_dir=1
-    " }
 
     " { supertab
         let g:SuperTabDefaultCompletionType = "<c-n>"
     " }
     
     " { lengthmatters
-        let g:lengthmatters_colors='ctermbg=244 guibg=234'
+        " let g:lengthmatters_colors='ctermbg=244 guibg=234'
     " }
     "
     " { vim-virtualenv
