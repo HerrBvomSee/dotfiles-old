@@ -47,20 +47,26 @@ call vundle#rc()
     Bundle 'tpope/vim-surround'  
     Bundle 'Raimondi/delimitMate'
     Plugin 'scrooloose/nerdcommenter'
-    Plugin 'ervandew/supertab'
+    " Plugin 'ervandew/supertab'
 
     Bundle 'Yggdroot/indentLine'
     Bundle 'whatyouhide/vim-lengthmatters'
     Bundle 'luochen1990/rainbow' 
 
-    " Plugin 'Shougo/neocomplete.vim'
-    Bundle 'scrooloose/syntastic'
+    " { Syntax completion/Snippet plugins
+        Plugin 'Shougo/neocomplete.vim'
 
+        Bundle 'SirVer/ultisnips'
+        Plugin 'honza/vim-snippets'    
+        Bundle 'scrooloose/syntastic'
+    " }
+    
     Bundle 'tpope/vim-fugitive'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'elzr/vim-json'
-    Bundle 'SirVer/ultisnips'
+
     Bundle 'terryma/vim-expand-region'
+
     Bundle 'AndrewRadev/splitjoin.vim'  
     Plugin 'samsonw/vim-task'
 
@@ -81,6 +87,9 @@ call vundle#rc()
             Bundle 'nanotech/jellybeans.vim'
             Plugin 'flazz/vim-colorschemes'             " Colorschemes
             Bundle 'junegunn/seoul256.vim'
+            Plugin 'whatyouhide/vim-gotham'
+            Plugin 'rakr/vim-two-firewatch'
+            Plugin 'jdkanani/vim-material-theme'
         " }
     " }}}
 
@@ -111,7 +120,12 @@ call vundle#rc()
         " { SQL
             Plugin 'shmup/vim-sql-syntax'
         " }
+        "
+        " { Haxe
+            Plugin 'jdonaldson/vaxe'
+        " }
     " }
+
 " }
 
 filetype plugin indent on     " file type detection
@@ -134,9 +148,10 @@ let macvim_skip_colorscheme=1
     set guioptions-=T   " disable toolbar
     if has("gui_win32")
         " set guifont=Fira\ Mono:h10
-        set guifont=Hack:h8
+        " set guifont=Hack:h8
+        set guifont=Monoid:h9
         " set guifont=Ubuntu\ Mono:h9
-        colorscheme gruvbox
+        colorscheme gotham256
     else
         set guifont=Ubuntu\ Mono:h12
         colorscheme base16-ashes
@@ -189,6 +204,7 @@ endif
     set incsearch
     set ignorecase
     set smartcase
+    set autowrite
 " }
 
 " { KEY MAPPINGS
@@ -252,6 +268,9 @@ endif
     " { json
         au BufRead,BufNewFile *.conf set filetype=json
     " }
+    " { haxe
+        au BufRead,BufNewFile *.hx set filetype=haxe
+    " }
 " }
 
 " { PLUGIN SETTINGS
@@ -310,6 +329,10 @@ endif
         let g:jedi#use_tabs_not_buffers=0
         let g:jedi#show_call_signatures="1"
         let g:jedi#completions_enabled=1
+    " }
+
+    " { NEOCOMPLETE
+        let g:neocomplete#enable_at_startup = 1
     " }
 
     " { Open-Terminal-Filemanager
