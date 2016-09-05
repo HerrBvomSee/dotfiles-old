@@ -153,7 +153,9 @@ let macvim_skip_colorscheme=1
         " set guifont=Ubuntu\ Mono:h9
         colorscheme gotham256
     else
-        set guifont=Ubuntu\ Mono:h12
+        " set guifont=Droid\ Sans\ Mono:h11
+        set guifont=Fira\ Mono:h12
+        " set guifont=Monoid:h9
         colorscheme base16-ashes
     endif
 
@@ -332,7 +334,11 @@ endif
     " }
 
     " { NEOCOMPLETE
-        let g:neocomplete#enable_at_startup = 1
+        let g:acp_enableAtStartup = 0  " Disable AutoComplPop.
+        let g:neocomplete#enable_at_startup = 1  " start neocomplete directly
+        let g:neocomplete#enable_smart_case = 1  " Use smartcase.
+        let g:neocomplete#sources#syntax#min_keyword_length = 3  " Set minimum syntax keyword length.
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'    
     " }
 
     " { Open-Terminal-Filemanager
