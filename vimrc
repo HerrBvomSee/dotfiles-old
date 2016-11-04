@@ -59,11 +59,13 @@ call vundle#rc()
         Bundle 'SirVer/ultisnips'
         Plugin 'honza/vim-snippets'    
         Bundle 'scrooloose/syntastic'
+        Bundle 'neomake/neomake'
     " }
     
     Bundle 'tpope/vim-fugitive'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'elzr/vim-json'
+    Bundle 'tpope/vim-projectionist'
 
     Bundle 'terryma/vim-expand-region'
 
@@ -94,9 +96,23 @@ call vundle#rc()
     " }}}
 
     " { LANGUAGE SUPPORT
-        " { Web stuff 
+        " { Web/js stuff 
             Bundle 'cakebaker/scss-syntax.vim'
             Bundle 'groenewege/vim-less'
+            Bundle 'pangloss/vim-javascript'
+            Bundle 'moll/vim-node'
+            Bundle 'othree/html5-syntax.vim'
+            Bundle 'othree/html5.vim'
+            Bundle 'othree/javascript-libraries-syntax.vim'
+            Bundle 'othree/es.next.syntax.vim'
+            Bundle 'ternjs/tern_for_vim'
+            " " Bundle 'elzr/vim-json'
+            Bundle 'othree/jsdoc-syntax.vim'
+            Bundle 'itspriddle/vim-jquery'
+            Bundle '1995eaton/vim-better-javascript-completion'
+            " Bundle 'marijnh/tern_for_vim', { 'do': 'npm install' }
+            Bundle 'othree/jspc.vim'
+            " Bundle 'moll/vim-node'
         " }
         
         " { Markup
@@ -149,12 +165,11 @@ let macvim_skip_colorscheme=1
     if has("gui_win32")
         " set guifont=Fira\ Mono:h10
         " set guifont=Hack:h8
-        set guifont=Monoid:h9
-        " set guifont=Ubuntu\ Mono:h9
+        set guifont=Ubuntu\ Mono:h10
         colorscheme gotham256
     else
         " set guifont=Droid\ Sans\ Mono:h11
-        set guifont=Fira\ Mono:h12
+        set guifont=Fira\ Mono:h10
         " set guifont=Monoid:h9
         colorscheme base16-ashes
     endif
@@ -273,6 +288,12 @@ endif
     " { haxe
         au BufRead,BufNewFile *.hx set filetype=haxe
     " }
+    " { javascript
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+let g:neocomplete#sources#omni#functions.javascript = [
+        \   'jspc#omni',
+        \   'tern#Complete',
+        \ ]    " }
 " }
 
 " { PLUGIN SETTINGS
@@ -348,13 +369,13 @@ endif
     " }
 
     " { SYNTASTIC
-       let g:syntastic_python_checkers=['flake8', 'pep8']
-       let g:syntastic_enable_signs=1
-       let g:syntastic_auto_jump=0
-       let g:syntastic_always_populate_loc_list=1
-       let g:syntastic_auto_loc_list=1
-       let g:syntastic_check_on_wq=0
-       let g:syntastic_enable_balloons=0
+       " let g:syntastic_python_checkers=['flake8', 'pep8']
+       " let g:syntastic_enable_signs=1
+       " let g:syntastic_auto_jump=0
+       " let g:syntastic_always_populate_loc_list=1
+       " let g:syntastic_auto_loc_list=1
+       " let g:syntastic_check_on_wq=0
+       " let g:syntastic_enable_balloons=0
     " }
 
     " { SessionManager
