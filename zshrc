@@ -68,3 +68,4 @@ export PATH=$COCOS_X_ROOT:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT=/Users/tbass/Dropbox/Projekte/libraries/cocos2d-x-3.3/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+eval $(/usr/libexec/path_helper -s)

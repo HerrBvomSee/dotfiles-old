@@ -30,7 +30,8 @@ call vundle#rc()
     " let Vundle manage Vundle
     " required!
     Bundle 'gmarik/vundle'
-    Bundle 'bling/vim-airline'
+    Bundle 'vim-airline/vim-airline'
+    Bundle 'vim-airline/vim-airline-themes'
 
     Bundle 'scrooloose/nerdtree'
     Bundle 'jeetsukumaran/vim-buffergator'
@@ -298,7 +299,7 @@ let g:neocomplete#sources#omni#functions.javascript = [
 
 " { PLUGIN SETTINGS
     " { Airline
-        let g:airline_powerline_fonts=0
+        let g:airline_powerline_fonts=1
         let g:airline_left_sep=''
         let g:airline_right_sep=''
     " }
@@ -328,7 +329,7 @@ let g:neocomplete#sources#omni#functions.javascript = [
     " }
     
     " { Rainbow parenthesis
-        let g:rainbow_active = 1
+        let g:rainbow_active=1
     " }
 
     " { Colorscheme switcher

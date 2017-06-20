@@ -8,3 +8,4 @@ export PATH=/usr/local/share/python:$PATH
 # load a possible bashrc if it exists
 test -f ~/.bashrc && source ~/.bashrc
 
+eval $(/usr/libexec/path_helper -s)
