@@ -9,3 +9,5 @@ export PATH=/usr/local/share/python:$PATH
 test -f ~/.bashrc && source ~/.bashrc
 
 eval $(/usr/libexec/path_helper -s)
+
+export PATH="$HOME/.cargo/bin:$PATH"
